@@ -1,0 +1,46 @@
+Notes
+###############
+
+spatial_BASCS.R code runs the fixed K (# sources) algorithm for disentangling sources.
+### Please use the GitHub folder I set up. We can periodically save the code in Dropbox
+but the main version should be in GitHub. 
+
+Details:
+1) The PSF is loaded in C++. The PSF should be checked against a bright source before
+continuing. A visual step is built in to do this (inside a FALSE if statement). 
+2) The number of iterations can be changed on lines 139 and 140.
+3) Two runs that are performed. The first is a burnin period and is needed
+to find the approximate locations of the sources. The second run is the main run used 
+for inference. Importantly, the second run uses the locations found during burnin to 
+deal with the label switching problem. See literature folder for more information
+on label switching. Our approach is similar to an online version of Cron and West 
+2011 which is a practical way to deal with the problem. Since the posteriors of 
+source locations are typically well separated the label switching problem is not
+something we need to spend too much effort on. 
+
+
+Preliminary issues to address:
+1) Mixing / sticking: in the example Chandra dataset 14 sources should be found, at least
+for the full dataset. However, when we run the code often we do not find all the sources
+but rather find two or more sources in some bright sources i.e. the MCMC sampler gets stuck
+in some modes. I did not deal with this before because the RJMCMC aglorithm actually mitigates
+it to a large degree because it can create and destroy unneeded sources including stuck
+sources. However, I think that ideally we should make the MCMC work better and try to avoid
+relying on the RJMCMC as much as possible, otherwise we may encounter unnecessary difficulties
+down the line. There are two ways to address the problem: 
+
+i) The first way is to use a simple approach to pick out the sources locations and then use these
+to start the MCMC. This is not a complete solution but may be a worthwhile starting point to get 
+to grips with things. You can use EM or if you are feeling more adventurous then try some 
+nonparametric detection method (basically some form of binning andthresholding).
+ 
+ii) The second way is to implement tempering as in Neal 1996. I think this is the real solution
+and one of us should do it. Even if the eventual code skips the tempering part, we need it 
+to be should of avoiding difficulties and for convincing ourselves andothers that the MCMC 
+is working correctly. 
+
+
+Main goal:
+1) Build in model for the time data. The number of counts will be small since we are using 
+X-ray data, so we should probably use the Poisson paradigm. Therefore Bayesian Blocks is a
+good starting point. 
