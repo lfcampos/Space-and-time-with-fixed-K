@@ -1,8 +1,8 @@
 # Extended BASCS algorithm: MCMC for separating overlapping sources
 
-David E. Jones, _Postdoctoral Fellow at SAMSI and Duke University Department of Statistical Science_
-
 Luis F. Campos, _Graduate Student at Harvard University_
+
+David E. Jones, _Postdoctoral Fellow at SAMSI and Duke University Department of Statistical Science_
 
 
 **This is an extension of the model described in**: 
