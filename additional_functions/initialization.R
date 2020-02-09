@@ -25,8 +25,8 @@ initialization <- function(k_curr){
   
   ewt <- rep(0.5,k_curr)
   no.eparas <- ifelse(spectral_model == "full",2,4)
-  eparas <- matrix(NA,k_curr,no.eparas)
   if (spectral_model != "none"){
+    eparas <- matrix(NA,k_curr,no.eparas)
     for (i in 1:k_curr){
       gmeans <- runif(2,emean.min,emean.max)
       if (spectral_model == "full"){
