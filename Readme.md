@@ -11,7 +11,7 @@ Luis F. Campos and David E. Jones
 
 # Description
 
-The algorithm uses spatial, temporal and spectral information of a fixed number of sources to find the joint posterior distribution their spatial, temporal and spectral parameters.
+The algorithm uses the spatial, temporal and spectral information of a fixed number of sources to find the joint posterior distribution of their spatial, temporal and spectral parameters.
 
 # File Descriptions
 
